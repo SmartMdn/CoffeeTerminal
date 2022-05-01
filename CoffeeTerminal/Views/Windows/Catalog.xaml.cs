@@ -1,19 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using CoffeeTerminal;
+﻿using System.Windows;
+using CoffeeTerminal.Views.Pages.CatalogPages;
 
-namespace CoffeeTerminal.Windows
+namespace CoffeeTerminal.Views.Windows
 {
     /// <summary>
     /// Логика взаимодействия для Catalog.xaml
@@ -23,7 +11,7 @@ namespace CoffeeTerminal.Windows
         public Catalog()
         {
             InitializeComponent();
-            MainFrame.NavigationService.Navigate(new Pages.CatalogPages.MainPage());
+            MainFrame.NavigationService.Navigate(new MainPage());
         }
     }
 }

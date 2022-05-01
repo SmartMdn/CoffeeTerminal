@@ -1,7 +1,8 @@
 ﻿using System.Windows;
 using CoffeeTerminal.Pages;
+using CoffeeTerminal.Views.Pages;
 
-namespace CoffeeTerminal.Windows
+namespace CoffeeTerminal.Views.Windows
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
