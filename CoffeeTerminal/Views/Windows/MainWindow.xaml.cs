@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using CoffeeTerminal.Pages;
 using CoffeeTerminal.Views.Pages;
 
 namespace CoffeeTerminal.Views.Windows

@@ -3,55 +3,32 @@ using System.Windows.Controls;
 using CoffeeTerminal.ViewModels;
 using CoffeeTerminal.Views.Windows;
 using CoffeeTerminal;
+using System.Windows.Input;
+using System;
 
-namespace CoffeeTerminal.Views.Pages
+namespace CoffeeTerminal.Views.Pages;
+
+/// <summary>
+/// Логика взаимодействия для TerminalRegistrationPage.xaml
+/// </summary>
+public partial class TerminalRegistrationPage : Page
 {
-    /// <summary>
-    /// Логика взаимодействия для TerminalRegistrationPage.xaml
-    /// </summary>
-    public partial class TerminalRegistrationPage : Page
+    public TerminalRegistrationPage()
     {
-        public TerminalRegistrationPage()
-        {
-            InitializeComponent();
-            this.DataContext = new MainWindowViewModel();
-        }
+        InitializeComponent();
+        CommandBinding commandBinding = new CommandBinding();
+        commandBinding.Command = ApplicationCommands.Help;
+        // устанавливаем метод, который будет выполняться при вызове команды
+        commandBinding.Executed += CommandBinding_Executed;
+        // добавляем привязку к коллекции привязок элемента Button
+        EnterButton.CommandBindings.Add(commandBinding);
 
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
-        {
-            if (TextBox.Text.Length == 15) return;
-            FrameworkElement? frmElement = e.Source as FrameworkElement;
-            TextBox.Text += frmElement?.Name switch 
-            {
-                "Button1" => "1",
-                "Button2" => "2",
-                "Button3" => "3",
-                "Button4" => "4",
-                "Button5" => "5",
-                "Button6" => "6",
-                "Button7" => "7",
-                "Button8" => "8",
-                "Button9" => "9",
-                "Button10" => "10",
-                _ => ""
-            };
-        }
-
-        private void EditClick(object sender, RoutedEventArgs e)
-        {
-            if (TextBox.Text.Length == 0) return;
-
-            string str = TextBox.Text;
-            TextBox.Text = str.Remove(TextBox.Text.Length-1);
-        }
-
-        private void RegistrationClick(object sender, RoutedEventArgs e)
-        {
-            /*TODO Create Registration with WebAPI*/
-            Catalog catalogWindow = new Catalog();
-            catalogWindow.Show();
-        }
     }
 
-    
+    private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+    {
+        /*TODO Create Registration with WebAPI*/
+        Catalog catalogWindow = new Catalog();
+        catalogWindow.Show();
+    }
 }
