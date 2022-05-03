@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using CoffeeTerminal.ViewModels;
 using CoffeeTerminal.Views.Pages;
 
 namespace CoffeeTerminal.Views.Windows
@@ -11,9 +12,12 @@ namespace CoffeeTerminal.Views.Windows
         public MainWindow()
         {
             InitializeComponent();
-            MainFrame.NavigationService.Navigate(new TerminalRegistrationPage());
+            MainFrame.NavigationService.Navigate(new MainPage()
+            {
+                DataContext = new MainWindowViewModel()
+            });
         }
-        
+
     }
 
     
