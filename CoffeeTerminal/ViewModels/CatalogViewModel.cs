@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Windows.Input;
+using CoffeeTerminal.Commands;
+using CoffeeTerminal.Stores;
+using Prism.Mvvm;
 
-namespace CoffeeTerminal.ViewModels
+namespace CoffeeTerminal.ViewModels;
+
+internal class CatalogViewModel : BindableBase
 {
-    internal class CatalogViewModel
+    public CatalogViewModel(NavigationStore navigationStore)
     {
+        NavigateHomeCommand = new NavigateHomeCommand(navigationStore);
     }
+
+    public ICommand NavigateHomeCommand { get; }
 }

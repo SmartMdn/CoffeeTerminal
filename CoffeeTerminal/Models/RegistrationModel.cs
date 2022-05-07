@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CoffeeTerminal.Views.Windows;
-using Prism.Mvvm;
+﻿using Prism.Mvvm;
 
 namespace CoffeeTerminal.Models;
 
@@ -28,6 +22,5 @@ internal class RegistrationModel : BindableBase
     public void Registration(string str)
     {
         //TODO Сделать отправление ID в базу данных
-        
     }
 }

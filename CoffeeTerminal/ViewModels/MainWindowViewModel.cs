@@ -1,23 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using CoffeeTerminal.Models;
-using Prism.Commands;
+﻿using System.ComponentModel;
+using CoffeeTerminal.Stores;
 using Prism.Mvvm;
-using System.Windows.Input;
 
-namespace CoffeeTerminal.ViewModels
+namespace CoffeeTerminal.ViewModels;
+
+internal class MainWindowViewModel : BindableBase
 {
-    internal class MainWindowViewModel : BindableBase
-    {
-        public BindableBase CurrentViewModel { get; }
+    private readonly NavigationStore _navigationStore;
 
-        public MainWindowViewModel()
-        {
-            CurrentViewModel = new RegistrationViewModel();
-        }
+    public MainWindowViewModel(NavigationStore navigationStore)
+    {
+        _navigationStore = navigationStore;
+
+        _navigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
+    }
+
+    public BindableBase CurrentViewModel => _navigationStore.CurrentViewModel;
+
+    private void OnCurrentViewModelChanged()
+    {
+        OnPropertyChanged(new PropertyChangedEventArgs(nameof(CurrentViewModel)));
     }
 }
