@@ -67,7 +67,7 @@
                 <ColumnDefinition Width="6*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Button x:Name="EnterButton" Command="{Binding Registrate}" Grid.Column="1" Content="Ввод"
+            <Button x:Name="EnterButton" Command="{Binding Registration}" Grid.Column="1" Content="Ввод"
                     HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Top" Height="94" Width="600"
                     FontSize="50" />
             <TextBox Text="{Binding Id, Mode=OneWay}" Name="TextBox" MaxLength="15" Grid.Column="1" FontSize="30"

@@ -11,7 +11,6 @@ internal class MainWindowViewModel : BindableBase
     public MainWindowViewModel(NavigationStore navigationStore)
     {
         _navigationStore = navigationStore;
-
         _navigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
     }
 

@@ -14,34 +14,39 @@ internal class RegistrationViewModel : BindableBase
 
     public RegistrationViewModel(NavigationStore navigationStore)
     {
-        NavigateHomeCommand = new NavigateHomeCommand(navigationStore);
+        NavigateCatalogCommand = new NavigateCatalogCommand(navigationStore);
         _model.PropertyChanged += (s, e) => RaisePropertyChanged(e.PropertyName);
 
-        AddCommand = new DelegateCommand<string?>(str => { _model.Add(str); });
+        AddCommand = new DelegateCommand<string?>(str =>
+        {
+            if (str != null) _model.Add(str);
+        });
 
         EditCommand = new DelegateCommand(() => _model.Edit());
 
-        Registrate = new DelegateCommand<string?>(str =>
+        Registration = new DelegateCommand(()=>
         {
-            if (string.IsNullOrEmpty(str))
+            if (string.IsNullOrEmpty(Id))
             {
                 MessageBox.Show("Вы не ввели Id");
                 return;
             }
 
-            if (str.Length < 9)
+            if (Id.Length < 9)
             {
                 MessageBox.Show("Id короче 9 символов");
                 return;
             }
 
-            _model.Registration(str);
+            _model.Registration(Id);
+
+            NavigateCatalogCommand.Execute(navigationStore);
         });
     }
 
     public DelegateCommand<string?> AddCommand { get; }
     public DelegateCommand EditCommand { get; }
     public string Id => _model.Id;
-    private DelegateCommand<string?> Registrate { get; }
-    public ICommand NavigateHomeCommand { get; }
+    public DelegateCommand Registration { get; }
+    public ICommand NavigateCatalogCommand { get; }
 }
