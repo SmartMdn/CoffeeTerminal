@@ -11,16 +11,9 @@ namespace CoffeeTerminal.EntityFramework
 {
     public class CoffeeTerminalDbContext : DbContext
     {
+        public CoffeeTerminalDbContext(DbContextOptions options) : base(options) { }
+        public DbSet<Terminal> Terminals { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer("Server=KOMPUTER;Database=CoffeeTerminalDB;Trusted_Connection=True;");
-
-            base.OnConfiguring(optionsBuilder);
-        }
-
-
     }
 }

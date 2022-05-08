@@ -70,7 +70,7 @@
             <Button x:Name="EnterButton" Command="{Binding Registration}" Grid.Column="1" Content="Ввод"
                     HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Top" Height="94" Width="600"
                     FontSize="50" />
-            <TextBox Text="{Binding Id, Mode=OneWay}" Name="TextBox" MaxLength="15" Grid.Column="1" FontSize="30"
+            <TextBox Text="{Binding Id, Mode=TwoWay}" Name="TextBox" MaxLength="15" Grid.Column="1" FontSize="30"
                      Padding="20,40,20,40" HorizontalAlignment="Center" Grid.Row="0" TextWrapping="Wrap"
                      VerticalAlignment="Top" Width="500" TextAlignment="Center" />
         </Grid>

@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoffeeTerminal", "CoffeeTer
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoffeeTerminal.Domain", "CoffeeTerminal.Domain\CoffeeTerminal.Domain.csproj", "{9C7D2FBC-D808-470A-8F3B-392AF29BF2AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoffeeTerminal.EntityFramework", "CoffeeTerminal.EntityFramework\CoffeeTerminal.EntityFramework.csproj", "{F5797505-5A1D-4CA0-A6B9-675F659718D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoffeeTerminal.EntityFramework", "CoffeeTerminal.EntityFramework\CoffeeTerminal.EntityFramework.csproj", "{F5797505-5A1D-4CA0-A6B9-675F659718D4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

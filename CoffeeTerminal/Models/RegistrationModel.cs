@@ -5,6 +5,7 @@ namespace CoffeeTerminal.Models;
 internal class RegistrationModel : BindableBase
 {
     public string Id;
+    public C
 
     public void Add(string str)
     {
@@ -19,8 +20,9 @@ internal class RegistrationModel : BindableBase
         RaisePropertyChanged("Id");
     }
 
-    public void Registration(string str)
+    public bool Registration(string str)
     {
-        //TODO Сделать отправление ID в базу данных
+        
+        return true;
     }
 }

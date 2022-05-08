@@ -2,6 +2,7 @@
 using System.Windows.Input;
 using CoffeeTerminal.Commands;
 using CoffeeTerminal.Models;
+using CoffeeTerminal.Services;
 using CoffeeTerminal.Stores;
 using Prism.Commands;
 using Prism.Mvvm;
@@ -14,7 +15,7 @@ internal class RegistrationViewModel : BindableBase
 
     public RegistrationViewModel(NavigationStore navigationStore)
     {
-        NavigateCatalogCommand = new NavigateCatalogCommand(navigationStore);
+        
         _model.PropertyChanged += (s, e) => RaisePropertyChanged(e.PropertyName);
 
         AddCommand = new DelegateCommand<string?>(str =>
@@ -37,16 +38,23 @@ internal class RegistrationViewModel : BindableBase
                 MessageBox.Show("Id короче 9 символов");
                 return;
             }
+            
+            if(!_model.Registration(Id)) return;
 
-            _model.Registration(Id);
-
-            NavigateCatalogCommand.Execute(navigationStore);
+            RegistrationCommand =
+                new RegistrationCommand(
+                    new NavigationService<CatalogViewModel>(navigationStore,
+                        () => new CatalogViewModel(navigationStore)), new RegistrationViewModel(navigationStore));
+            RegistrationCommand.Execute(navigationStore);
         });
     }
 
     public DelegateCommand<string?> AddCommand { get; }
     public DelegateCommand EditCommand { get; }
-    public string Id => _model.Id;
+    public string Id {
+        get => _model.Id;
+        set => _model.Id = value;
+    }
     public DelegateCommand Registration { get; }
-    public ICommand NavigateCatalogCommand { get; }
+    public ICommand RegistrationCommand { get; set; }
 }

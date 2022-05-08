@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CoffeeTerminal.EntityFramework.Migrations
 {
     [DbContext(typeof(CoffeeTerminalDbContext))]
-    [Migration("20220507170815_initial")]
-    partial class initial
+    [Migration("20220507204302_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,7 +23,7 @@ namespace CoffeeTerminal.EntityFramework.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("CoffeeTerminal.Domain.Category", b =>
+            modelBuilder.Entity("CoffeeTerminal.Domain.Models.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -75,7 +75,7 @@ namespace CoffeeTerminal.EntityFramework.Migrations
 
             modelBuilder.Entity("CoffeeTerminal.Domain.Models.Product", b =>
                 {
-                    b.HasOne("CoffeeTerminal.Domain.Category", "Category")
+                    b.HasOne("CoffeeTerminal.Domain.Models.Category", "Category")
                         .WithMany("Products")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -84,7 +84,7 @@ namespace CoffeeTerminal.EntityFramework.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("CoffeeTerminal.Domain.Category", b =>
+            modelBuilder.Entity("CoffeeTerminal.Domain.Models.Category", b =>
                 {
                     b.Navigation("Products");
                 });
