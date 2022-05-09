@@ -20,10 +20,7 @@ namespace CoffeeTerminal.EntityFramework
 
         public CoffeeTerminalDbContext CreateDbContext(string[] args)
         {
-            var options = new DbContextOptionsBuilder<CoffeeTerminalDbContext>();
-            options.UseSqlServer("Server=KOMPUTER;Database=CoffeeTerminalDB;Trusted_Connection=True;");
-
-            return new CoffeeTerminalDbContext(options.Options);
+            return CreateDbContext();
         }
     }
 }

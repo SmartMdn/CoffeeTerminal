@@ -25,28 +25,10 @@ internal class RegistrationViewModel : BindableBase
 
         EditCommand = new DelegateCommand(() => _model.Edit());
 
-        Registration = new DelegateCommand(()=>
-        {
-            if (string.IsNullOrEmpty(Id))
-            {
-                MessageBox.Show("Вы не ввели Id");
-                return;
-            }
-
-            if (Id.Length < 9)
-            {
-                MessageBox.Show("Id короче 9 символов");
-                return;
-            }
-            
-            if(!_model.Registration(Id)) return;
-
-            RegistrationCommand =
-                new RegistrationCommand(
-                    new NavigationService<CatalogViewModel>(navigationStore,
-                        () => new CatalogViewModel(navigationStore)), new RegistrationViewModel(navigationStore));
-            RegistrationCommand.Execute(navigationStore);
-        });
+        Registration =
+            new RegistrationCommand(
+                new NavigationService<CatalogViewModel>(navigationStore, () => new CatalogViewModel(navigationStore)),
+                this);
     }
 
     public DelegateCommand<string?> AddCommand { get; }
@@ -55,6 +37,5 @@ internal class RegistrationViewModel : BindableBase
         get => _model.Id;
         set => _model.Id = value;
     }
-    public DelegateCommand Registration { get; }
-    public ICommand RegistrationCommand { get; set; }
+    public RegistrationCommand Registration { get; set; }
 }
