@@ -19,12 +19,12 @@ namespace CoffeeTerminal.Commands
 
         public event EventHandler CanExecuteChanged;
 
-        public virtual bool CanExecute(object parameter)
+        public virtual bool CanExecute(object? parameter)
         {
             return !IsExecuting;
         }
 
-        public async void Execute(object parameter)
+        public async void Execute(object? parameter)
         {
             IsExecuting = true;
 
@@ -33,7 +33,7 @@ namespace CoffeeTerminal.Commands
             IsExecuting = false;
         }
 
-        public abstract Task ExecuteAsync(object parameter);
+        public abstract Task ExecuteAsync(object? parameter);
 
         protected void OnCanExecuteChanged()
         {

@@ -13,31 +13,31 @@ namespace CoffeeTerminal.EntityFramework.Services
     public class GenericDataService<T> : IDataService<T> where T : DomainObject
     {
         private readonly CoffeeTerminalDbContextFactory _contextFactory;
-        protected CoffeeTerminalDbContext context;
+        protected CoffeeTerminalDbContext Context;
 
         public GenericDataService(CoffeeTerminalDbContextFactory contextFactory)
         {
             _contextFactory = contextFactory;
-            context = _contextFactory.CreateDbContext();
+            Context = _contextFactory.CreateDbContext();
         }
 
         public async Task<IEnumerable<T>> GetAll()
         {
-            var entities = await context.Set<T>().ToListAsync();
+            var entities = await Context.Set<T>().ToListAsync();
 
             return entities;
         }
 
         public async Task<T> Get(int id)
         {
-            var entity = await context.Set<T>().FirstOrDefaultAsync(e => e.Id == id);
+            var entity = await Context.Set<T>().FirstOrDefaultAsync(e => e.Id == id);
             return entity;
         }
 
         public async Task<T> Create(T entity)
         {
-            var createdEntity = context.Set<T>().Add(entity);
-            await context.SaveChangesAsync();
+            var createdEntity = Context.Set<T>().Add(entity);
+            await Context.SaveChangesAsync();
             return createdEntity.Entity;
         }
 
@@ -45,17 +45,17 @@ namespace CoffeeTerminal.EntityFramework.Services
         {
             entity.Id = id;
 
-            context.Set<T>().Update(entity);
-            await context.SaveChangesAsync();
+            Context.Set<T>().Update(entity);
+            await Context.SaveChangesAsync();
 
             return entity;
         }
 
         public async Task<bool> Delete(int id)
         {
-            var entity = await context.Set<T>().FirstOrDefaultAsync(e => e.Id == id);
-            context.Set<T>().Remove(entity);
-            await context.SaveChangesAsync();
+            var entity = await Context.Set<T>().FirstOrDefaultAsync(e => e.Id == id);
+            Context.Set<T>().Remove(entity);
+            await Context.SaveChangesAsync();
             return true;
         }
     }

@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using System.Windows;
-using CoffeeTerminal.Domain.Models;
 using CoffeeTerminal.EntityFramework;
 using CoffeeTerminal.EntityFramework.Services;
 using CoffeeTerminal.Services;
@@ -13,8 +12,7 @@ namespace CoffeeTerminal.Commands
         private readonly NavigationService<CatalogViewModel> _navigationService;
         private readonly RegistrationViewModel _viewModel;
 
-        private readonly RegistrationService registrationService =
-            new RegistrationService(new CoffeeTerminalDbContextFactory());
+        private readonly RegistrationService _registrationService = new(new CoffeeTerminalDbContextFactory());
 
         public RegistrationCommand(NavigationService<CatalogViewModel> navigationService, RegistrationViewModel viewModel)
         {
@@ -24,14 +22,14 @@ namespace CoffeeTerminal.Commands
 
         public override async Task ExecuteAsync(object parameter)
         {
-            if (!await registrationService.Registration(_viewModel.Id))
+            if (!await _registrationService.Registration(_viewModel.Id))
             {
                 MessageBox.Show("Введён неверный Id. Уточните верный у поставщика");
                 return;
             }
 
             MessageBox.Show("Регистрация прошла успешно");
-
+            _navigationService.Navigate();     
         }
     }
 }

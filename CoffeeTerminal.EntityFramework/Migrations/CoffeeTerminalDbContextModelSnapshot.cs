@@ -80,9 +80,6 @@ namespace CoffeeTerminal.EntityFramework.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<bool>("IsRegistered")
-                        .HasColumnType("bit");
-
                     b.Property<DateTime>("RegistrationDateTime")
                         .HasColumnType("datetime2");
 

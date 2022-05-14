@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CoffeeTerminal.EntityFramework.Migrations
 {
     [DbContext(typeof(CoffeeTerminalDbContext))]
-    [Migration("20220508113041_1")]
-    partial class _1
+    [Migration("20220510104918_2")]
+    partial class _2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -84,6 +84,9 @@ namespace CoffeeTerminal.EntityFramework.Migrations
 
                     b.Property<DateTime>("RegistrationDateTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("TerminalId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

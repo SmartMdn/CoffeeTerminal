@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Configuration;
+using System.Windows;
 using CoffeeTerminal.EntityFramework;
 using CoffeeTerminal.EntityFramework.Services;
 using CoffeeTerminal.Stores;
@@ -20,7 +21,7 @@ public partial class MainWindow : Window
         var registrationService = new RegistrationService(new CoffeeTerminalDbContextFactory());
         BindableBase viewModel;
 
-        if (!registrationService.IsRegistered) 
+        if (ConfigurationManager.AppSettings["isRegistered"] == "false") 
             viewModel = new RegistrationViewModel(navigationStore);
         else 
             viewModel = new CatalogViewModel(navigationStore);

@@ -5,10 +5,53 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewmodels="clr-namespace:CoffeeTerminal.ViewModels"
              mc:Ignorable="d"
-             Height="450" Width="800"
+             Height="1000" Width="1900"
              d:DataContext="{d:DesignInstance Type=viewmodels:CatalogViewModel}">
-    <Grid>
-        <Label Content="ХУЙ" FontSize="50" />
-        <Button Content="На домашнюю" FontSize="50" Command="{Binding NavigateCommand}" />
+    <UserControl.Resources>
+
+    </UserControl.Resources>
+
+
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.3*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <UniformGrid Grid.Row="1" Grid.Column="1" Name="UniformGrid" >
+            
+        </UniformGrid>
+        <Button 
+            Grid.Row="0" Grid.Column="1"
+            Command="{Binding CatalogCommand}"
+            Click="ButtonBase_OnClick"
+            Name="Button" />
+        <Grid Grid.Row="1" Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.4*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <ListBox 
+                Name="ListBox" 
+                ItemsSource="{Binding Categories}" 
+                SelectedItem="{Binding SelectedCategory}" 
+                Grid.Row="0" Grid.Column="1">
+
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="FontSize" Value="30" />
+                        <Setter Property="FontFamily" Value="Verdana" />
+                        <Setter Property="BorderBrush" Value="Gray" />
+                        <Setter Property="Background" Value="DimGray" />
+                        <Setter Property="Padding" Value="10,20,10,20"></Setter>
+                        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+
+            </ListBox>
+        </Grid>
     </Grid>
 </UserControl>

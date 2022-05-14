@@ -1,10 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace CoffeeTerminal.EntityFramework.Migrations
 {
-    public partial class Init : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -19,6 +20,21 @@ namespace CoffeeTerminal.EntityFramework.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Categories", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Terminals",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TerminalId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RegistrationDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsRegistered = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Terminals", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -55,6 +71,9 @@ namespace CoffeeTerminal.EntityFramework.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Products");
+
+            migrationBuilder.DropTable(
+                name: "Terminals");
 
             migrationBuilder.DropTable(
                 name: "Categories");

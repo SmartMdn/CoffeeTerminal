@@ -26,4 +26,9 @@
     <ProjectReference Include="..\CoffeeTerminal.EntityFramework\CoffeeTerminal.EntityFramework.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="CustomComponents\" />
+    <Folder Include="Images\" />
+  </ItemGroup>
+
 </Project>

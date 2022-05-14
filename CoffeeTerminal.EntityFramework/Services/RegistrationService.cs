@@ -21,15 +21,16 @@ namespace CoffeeTerminal.EntityFramework.Services
                 return false;
             }
             entity.RegistrationDateTime = DateTime.Now;
-            entity.IsRegistered = true;
-            string frg = ConfigurationManager.AppSettings["isRegistered"];
+            var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            config.AppSettings.Settings["isRegistered"].Value = "true";
+            config.Save(ConfigurationSaveMode.Modified);
             await Update(entity.Id, entity);
             return true;
         }
 
         public async Task<Terminal?> Get(string terminalId)
         {
-            var entity = await context.Set<Terminal>().FirstOrDefaultAsync(e => e.TerminalId == terminalId);
+            var entity = await Context.Set<Terminal>().FirstOrDefaultAsync(e => e.TerminalId == terminalId);
             if (entity == null)
             {
                 return null;
