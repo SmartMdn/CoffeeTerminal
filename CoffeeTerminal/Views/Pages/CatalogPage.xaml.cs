@@ -1,7 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using CoffeeTerminal.Stores;
-using CoffeeTerminal.ViewModels;
+using System.Windows.Controls.Primitives;
 
 namespace CoffeeTerminal.Views.Pages;
 
@@ -18,5 +17,13 @@ public partial class CatalogPage : UserControl
     private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
     {
         Button.Visibility = Visibility.Hidden;
+    }
+
+    private void ButtonsBase_OnClick(object sender, RoutedEventArgs e)
+    {
+        Button1.IsChecked = false;
+        Button2.IsChecked = false;
+        Button3.IsChecked = false;
+        ((ToggleButton)sender).IsChecked = true;
     }
 }

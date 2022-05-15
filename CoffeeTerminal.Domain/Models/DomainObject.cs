@@ -1,7 +1,6 @@
-﻿namespace CoffeeTerminal.Domain.Models
+﻿namespace CoffeeTerminal.Domain.Models;
+
+public class DomainObject
 {
-    public class DomainObject
-    {
-        public int Id { get; set; }
-    }
+    public int Id { get; set; }
 }

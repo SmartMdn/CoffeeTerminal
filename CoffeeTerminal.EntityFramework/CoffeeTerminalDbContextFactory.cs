@@ -1,26 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 
-namespace CoffeeTerminal.EntityFramework
+namespace CoffeeTerminal.EntityFramework;
+
+public class CoffeeTerminalDbContextFactory : IDesignTimeDbContextFactory<CoffeeTerminalDbContext>
 {
-    public class CoffeeTerminalDbContextFactory : IDesignTimeDbContextFactory<CoffeeTerminalDbContext>
+    public CoffeeTerminalDbContext CreateDbContext(string[] args)
     {
-        public CoffeeTerminalDbContext CreateDbContext()
-        {
-            var options = new DbContextOptionsBuilder<CoffeeTerminalDbContext>();
-            options.UseSqlServer("Server=KOMPUTER;Database=CoffeeTerminalDB;Trusted_Connection=True;");
+        return CreateDbContext();
+    }
 
-            return new CoffeeTerminalDbContext(options.Options);
-        }
+    public CoffeeTerminalDbContext CreateDbContext()
+    {
+        var options = new DbContextOptionsBuilder<CoffeeTerminalDbContext>();
+        //options.UseSqlServer("Server=KOMPUTER;Database=CoffeeTerminalDB;Trusted_Connection=True;");
+        options.UseSqlServer("Server=HOME-PC\\SQLEXPRESS;Database=CoffeeTerminalDB;Trusted_Connection=True;");
 
-        public CoffeeTerminalDbContext CreateDbContext(string[] args)
-        {
-            return CreateDbContext();
-        }
+        return new CoffeeTerminalDbContext(options.Options);
     }
 }

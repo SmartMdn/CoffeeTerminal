@@ -1,10 +1,4 @@
-﻿using System.Threading.Tasks;
-using System.Windows;
-using CoffeeTerminal.Domain.Models;
-using CoffeeTerminal.Domain.Services;
-using CoffeeTerminal.EntityFramework;
-using CoffeeTerminal.EntityFramework.Services;
-using Prism.Mvvm;
+﻿using Prism.Mvvm;
 
 namespace CoffeeTerminal.Models;
 

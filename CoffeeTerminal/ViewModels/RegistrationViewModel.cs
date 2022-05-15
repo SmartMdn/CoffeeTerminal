@@ -1,6 +1,4 @@
-﻿using System.Windows;
-using System.Windows.Input;
-using CoffeeTerminal.Commands;
+﻿using CoffeeTerminal.Commands;
 using CoffeeTerminal.Models;
 using CoffeeTerminal.Services;
 using CoffeeTerminal.Stores;
@@ -15,7 +13,6 @@ internal class RegistrationViewModel : BindableBase
 
     public RegistrationViewModel(NavigationStore navigationStore)
     {
-        
         _model.PropertyChanged += (s, e) => RaisePropertyChanged(e.PropertyName);
 
         AddCommand = new DelegateCommand<string?>(str =>
@@ -33,9 +30,12 @@ internal class RegistrationViewModel : BindableBase
 
     public DelegateCommand<string?> AddCommand { get; }
     public DelegateCommand EditCommand { get; }
-    public string Id {
+
+    public string Id
+    {
         get => _model.Id;
         set => _model.Id = value;
     }
+
     public RegistrationCommand Registration { get; set; }
 }

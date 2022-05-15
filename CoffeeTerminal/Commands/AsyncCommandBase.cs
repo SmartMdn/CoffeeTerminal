@@ -2,42 +2,42 @@
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace CoffeeTerminal.Commands
+namespace CoffeeTerminal.Commands;
+
+public abstract class AsyncCommandBase : ICommand
 {
-    public abstract class AsyncCommandBase : ICommand
+    private bool _isExecuting;
+
+    public bool IsExecuting
     {
-        private bool _isExecuting;
-        public bool IsExecuting
+        get => _isExecuting;
+        set
         {
-            get => _isExecuting;
-            set
-            {
-                _isExecuting = value;
-                OnCanExecuteChanged();
-            }
+            _isExecuting = value;
+            OnCanExecuteChanged();
         }
+    }
 
-        public event EventHandler CanExecuteChanged;
+    public event EventHandler CanExecuteChanged;
 
-        public virtual bool CanExecute(object? parameter)
-        {
-            return !IsExecuting;
-        }
+    public virtual bool CanExecute(object? parameter)
+    {
+        return !IsExecuting;
+    }
 
-        public async void Execute(object? parameter)
-        {
-            IsExecuting = true;
+    public async void Execute(object? parameter)
+    {
+        IsExecuting = true;
 
-            await ExecuteAsync(parameter);
+        await ExecuteAsync(parameter);
 
-            IsExecuting = false;
-        }
+        IsExecuting = false;
+    }
 
-        public abstract Task ExecuteAsync(object? parameter);
+    public abstract Task ExecuteAsync(object? parameter);
 
-        protected void OnCanExecuteChanged()
-        {
-            CanExecuteChanged?.Invoke(this, EventArgs.Empty);
-        }
+    protected void OnCanExecuteChanged()
+    {
+        CanExecuteChanged?.Invoke(this, EventArgs.Empty);
     }
 }

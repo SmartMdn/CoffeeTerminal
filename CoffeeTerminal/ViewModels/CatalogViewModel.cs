@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using CoffeeTerminal.Commands;
 using CoffeeTerminal.Domain.Models;
@@ -10,24 +8,84 @@ using CoffeeTerminal.EntityFramework;
 using CoffeeTerminal.EntityFramework.Services;
 using CoffeeTerminal.Services;
 using CoffeeTerminal.Stores;
+using Prism.Commands;
 using Prism.Mvvm;
 
 namespace CoffeeTerminal.ViewModels;
 
 internal class CatalogViewModel : BindableBase
 {
+    private bool _button1IsChecked;
+    private bool _button2IsChecked;
+    private bool _button3IsChecked;
+    private IEnumerable<Product> _products;
+
+    private List<CoffeeExampleViewModel> _coffeeExampleList;
+
+    private List<IEnumerable<DomainObject>> _list = new();
+
+    private int _size = 1;
+
     public CatalogViewModel(NavigationStore navigationStore)
     {
         NavigateCommand = new NavigateCommand<RegistrationViewModel>(
             new NavigationService<RegistrationViewModel>(navigationStore,
                 () => new RegistrationViewModel(navigationStore)));
         CatalogCommand = new CatalogCommand(this);
+        SortingCommand = new SortingCommand(this);
     }
 
-    private readonly GenericDataService<Category> _categoriesService =
-        new GenericDataService<Category>(new CoffeeTerminalDbContextFactory());
+    public bool Button1IsChecked
+    {
+        get => _button1IsChecked;
+        set
+        {
 
-    public List<IEnumerable<DomainObject>> _list = new();
+            _button1IsChecked = value;
+            RaisePropertyChanged();
+        }
+    }
+
+    public bool Button2IsChecked
+    {
+        get => _button2IsChecked;
+        set
+        {
+            _button2IsChecked = value;
+            RaisePropertyChanged();
+        }
+    }
+
+    public bool Button3IsChecked
+    {
+        get => _button3IsChecked;
+        set
+        {
+            _button3IsChecked = value;
+            RaisePropertyChanged();
+        }
+    }
+
+    public List<CoffeeExampleViewModel> CoffeeExampleList
+    {
+        get => _coffeeExampleList;
+        set
+        {
+            _coffeeExampleList = value;
+            RaisePropertyChanged();
+        }
+    }
+
+
+    public IEnumerable<Product> Products
+    {
+        get => _products;
+        set
+        {
+            _products = value;
+            RaisePropertyChanged();
+        }
+    }
 
     public List<IEnumerable<DomainObject>> List
     {
@@ -35,58 +93,25 @@ internal class CatalogViewModel : BindableBase
         set
         {
             _list = value;
-            SetCategories();
+            RaisePropertyChanged();
         }
-    }
-
-    private void SetProducts()
-    {
-        throw new NotImplementedException();
-    }
-
-    #region SelectedCategory
-    private string _selectedCategory;
-    public string SelectedCategory
-    {
-        get => _selectedCategory;
-        set
-        {
-            if (value != this._selectedCategory)
-                _selectedCategory = value;
-            this.RaisePropertyChanged("SelectedCategory");
-        }
-    }
-    #endregion SelectedCategory
-
-    #region Categories
-    private ObservableCollection<string> _categories;
-    public ObservableCollection<string> Categories
-    {
-        get => _categories;
-        set
-        {
-            if (value != this._categories)
-                _categories = value;
-            this.RaisePropertyChanged("Categories");
-        }
-    }
-    #endregion Categories
-
-    private void SetCategories()
-    {
-        _categories = new ObservableCollection<string>();
-        foreach (var item in List[0])
-        {
-            _categories.Add(((Category)item).Name);
-        }
-        RaisePropertyChanged("Categories");
     }
 
     public ICommand NavigateCommand { get; }
-    public CatalogCommand CatalogCommand { get; }
+    public ICommand CatalogCommand { get; }
 
-    public EventArgs CatalogCreateIvent
+    public int Size
     {
-        get { throw new NotImplementedException(); }
+        get => _size;
+        set
+        {
+            if (value % 4 != 0)
+                _size = value / 4 + 1;
+            else
+                _size = value / 4;
+            RaisePropertyChanged();
+        }
     }
+
+    public SortingCommand SortingCommand { get; }
 }
