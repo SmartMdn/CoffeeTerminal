@@ -1,8 +1,7 @@
-﻿namespace CoffeeTerminal.Domain.Models
+﻿namespace CoffeeTerminal.Domain.Models;
+
+internal class Cart
 {
-    internal class Cart 
-    {
-        public List<Product> Products { get; set; }
-        public int TotalPrice { get; set; }
-    }
+    public List<Product> Products { get; set; }
+    public int TotalPrice { get; set; }
 }

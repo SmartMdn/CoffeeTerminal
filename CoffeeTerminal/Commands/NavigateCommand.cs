@@ -1,8 +1,4 @@
-﻿using System;
-using System.Windows.Navigation;
-using CoffeeTerminal.Services;
-using CoffeeTerminal.Stores;
-using CoffeeTerminal.ViewModels;
+﻿using CoffeeTerminal.Services;
 using Prism.Mvvm;
 
 namespace CoffeeTerminal.Commands;

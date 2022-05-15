@@ -3,7 +3,7 @@ using System.Windows.Input;
 
 namespace CoffeeTerminal.Commands;
 
-internal abstract class CommandBase : ICommand
+public abstract class CommandBase : ICommand
 {
     public bool CanExecute(object? parameter)
     {

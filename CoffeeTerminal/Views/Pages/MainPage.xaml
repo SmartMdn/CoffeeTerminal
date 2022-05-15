@@ -7,7 +7,7 @@
       xmlns:views="clr-namespace:CoffeeTerminal.Views.Pages"
       d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowViewModel}"
       mc:Ignorable="d"
-      Title="MainPage" Height="auto" Width="auto" >
+      Title="MainPage" Height="auto" Width="auto">
     <ContentControl Content="{Binding CurrentViewModel}">
         <ContentControl.Resources>
             <DataTemplate DataType="{x:Type viewmodels:RegistrationViewModel}">

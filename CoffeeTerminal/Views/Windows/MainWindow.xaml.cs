@@ -21,9 +21,9 @@ public partial class MainWindow : Window
         var registrationService = new RegistrationService(new CoffeeTerminalDbContextFactory());
         BindableBase viewModel;
 
-        if (ConfigurationManager.AppSettings["isRegistered"] == "false") 
+        if (ConfigurationManager.AppSettings["isRegistered"] == "false")
             viewModel = new RegistrationViewModel(navigationStore);
-        else 
+        else
             viewModel = new CatalogViewModel(navigationStore);
 
         navigationStore.CurrentViewModel = viewModel;

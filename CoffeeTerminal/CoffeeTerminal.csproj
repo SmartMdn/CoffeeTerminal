@@ -8,6 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Fonts\HelloJonesFreeTrial-K7Z2A.otf" />
+    <None Remove="Fonts\Intro.otf" />
+    <None Remove="Images\IcedLatte.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.4">
       <PrivateAssets>all</PrivateAssets>
@@ -27,8 +33,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="CustomComponents\" />
-    <Folder Include="Images\" />
+    <Resource Include="Fonts\HelloJonesFreeTrial-K7Z2A.otf" />
+    <Resource Include="Fonts\Intro.otf" />
+    <Resource Include="Images\IcedCoffee\IcedLatte.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Images\Coffee\" />
   </ItemGroup>
 
 </Project>

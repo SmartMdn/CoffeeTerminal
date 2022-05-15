@@ -4,54 +4,97 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewmodels="clr-namespace:CoffeeTerminal.ViewModels"
+             xmlns:cc="clr-namespace:CoffeeTerminal.CustomComponents"
              mc:Ignorable="d"
-             Height="1000" Width="1900"
+             Height="1080" Width="1920"
              d:DataContext="{d:DesignInstance Type=viewmodels:CatalogViewModel}">
-    <UserControl.Resources>
-
-    </UserControl.Resources>
-
-
-    <Grid >
+    <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.2*"/>
-            <RowDefinition/>
+            <RowDefinition Height="0.2*" />
+            <RowDefinition />
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.3*"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <UniformGrid Grid.Row="1" Grid.Column="1" Name="UniformGrid" >
+        <ListBox Grid.Row="1" ItemsSource="{Binding CoffeeExampleList}" Background="#E6E0C8" Padding="100,100,100,100">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="4" Rows="{Binding Path=Size}" />
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <cc:CoffeeExample />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <Grid Grid.Row="0">
+            <Grid.Background >
+                <SolidColorBrush Color="#94948E"/>
+            </Grid.Background>
+            <Grid.Resources>
+                <Style x:Key="Button" TargetType="ToggleButton">
+                    <Setter Property="Background" Value="#94948E"></Setter>
+                    <Setter Property="BorderThickness" Value="0" />
+                    <Setter Property="Command" Value="{Binding SortingCommand}" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ToggleButton}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Command" Value="{Binding SortingCommand}" />
+                            <Setter Property="Background" Value="#645D65" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Resources>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <ToggleButton Name="Button1" IsChecked="{Binding Button1IsChecked}" Click="ButtonsBase_OnClick" Grid.Column="1" Style="{StaticResource Button}">
+                <StackPanel Orientation="Horizontal">
+                    <Image MaxHeight="111"
+                           Source="C:\Users\Владыка\source\repos\SmartMdn\CoffeeTerminal\CoffeeTerminal\Images\Icons\cafe-latte_icon-icons.com_55438.png" />
+                    <TextBlock FontFamily="Intro" VerticalAlignment="Center" FontSize="33" Padding="20,10,1,1">Кофе с молоком</TextBlock>
+                </StackPanel>
+            </ToggleButton>
+            <ToggleButton Click="ButtonsBase_OnClick" IsChecked="{Binding Button2IsChecked}" Name="Button2" Grid.Column="2"
+                          Style="{StaticResource Button}">
+                <StackPanel Orientation="Horizontal">
+                    <Image MaxHeight="90"
+                           Source="C:\Users\Владыка\source\repos\SmartMdn\CoffeeTerminal\CoffeeTerminal\Images\Icons\latte_coffee_drink_cup_glass_icon_210122.png" />
+                    <TextBlock FontFamily="Intro" VerticalAlignment="Center" FontSize="33" Padding="20,10,1,1">Холодный кофе</TextBlock>
+                </StackPanel>
+            </ToggleButton>
+            <ToggleButton Click="ButtonsBase_OnClick" Name="Button3" IsChecked="{Binding Button3IsChecked}" Grid.Column="3" Style="{StaticResource Button}">
+                <StackPanel Orientation="Horizontal">
+                    <Image MaxHeight="90" Margin="1,1,1,1"
+                           Source="C:\Users\Владыка\source\repos\SmartMdn\CoffeeTerminal\CoffeeTerminal\Images\Icons\4301501colacupdrinkfastfoodsofttakeawaywater-115941_115901.png" />
+                    <TextBlock FontFamily="Intro" VerticalAlignment="Center" FontSize="33" Margin="20,10,110,1">Газировки</TextBlock>
+                </StackPanel>
+            </ToggleButton>
+            <StackPanel Grid.Column="0" Orientation="Vertical" Margin="0,50,0,0">
+                <StackPanel.Style>
+                    <Style>
+                        <Setter Property="Border.BorderThickness" Value="0"/>
+                    </Style>
+                </StackPanel.Style>
+                <TextBlock FontFamily="Hello Jones Free Trial" HorizontalAlignment="Center" FontSize="50" Text="Take And Go"/>
+                <TextBlock FontFamily="Hello Jones Free Trial" HorizontalAlignment="Center" FontSize="30" Text="Coffee"/>
+            </StackPanel>
             
-        </UniformGrid>
-        <Button 
-            Grid.Row="0" Grid.Column="1"
+        </Grid>
+        <Button
+            Grid.Row="0"
             Command="{Binding CatalogCommand}"
             Click="ButtonBase_OnClick"
             Name="Button" />
-        <Grid Grid.Row="1" Grid.Column="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.4*"/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <ListBox 
-                Name="ListBox" 
-                ItemsSource="{Binding Categories}" 
-                SelectedItem="{Binding SelectedCategory}" 
-                Grid.Row="0" Grid.Column="1">
-
-                <ListBox.ItemContainerStyle>
-                    <Style TargetType="ListBoxItem">
-                        <Setter Property="FontSize" Value="30" />
-                        <Setter Property="FontFamily" Value="Verdana" />
-                        <Setter Property="BorderBrush" Value="Gray" />
-                        <Setter Property="Background" Value="DimGray" />
-                        <Setter Property="Padding" Value="10,20,10,20"></Setter>
-                        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
-                    </Style>
-                </ListBox.ItemContainerStyle>
-
-            </ListBox>
-        </Grid>
     </Grid>
 </UserControl>
