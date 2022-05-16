@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Configuration;
 using System.Windows.Input;
 using CoffeeTerminal.Commands;
 using CoffeeTerminal.Domain.Models;
@@ -33,6 +34,7 @@ internal class CatalogViewModel : BindableBase
                 () => new RegistrationViewModel(navigationStore)));
         CatalogCommand = new CatalogCommand(this);
         SortingCommand = new SortingCommand(this);
+
     }
 
     public bool Button1IsChecked

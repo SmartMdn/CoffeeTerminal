@@ -1,7 +1,7 @@
 ﻿using System.Configuration;
 using System.Windows;
 using CoffeeTerminal.EntityFramework;
-using CoffeeTerminal.EntityFramework.Services;
+using CoffeeTerminal.Services;
 using CoffeeTerminal.Stores;
 using CoffeeTerminal.ViewModels;
 using CoffeeTerminal.Views.Pages;

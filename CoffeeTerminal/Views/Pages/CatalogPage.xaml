@@ -62,7 +62,7 @@
                 <StackPanel Orientation="Horizontal">
                     <Image MaxHeight="111"
                            Source="C:\Users\Владыка\source\repos\SmartMdn\CoffeeTerminal\CoffeeTerminal\Images\Icons\cafe-latte_icon-icons.com_55438.png" />
-                    <TextBlock FontFamily="Intro" VerticalAlignment="Center" FontSize="33" Padding="20,10,1,1">Кофе с молоком</TextBlock>
+                    <TextBlock FontFamily="Plainot" VerticalAlignment="Center" FontSize="35" Padding="20,10,1,1">Кофе с молоком</TextBlock>
                 </StackPanel>
             </ToggleButton>
             <ToggleButton Click="ButtonsBase_OnClick" IsChecked="{Binding Button2IsChecked}" Name="Button2" Grid.Column="2"
@@ -70,14 +70,14 @@
                 <StackPanel Orientation="Horizontal">
                     <Image MaxHeight="90"
                            Source="C:\Users\Владыка\source\repos\SmartMdn\CoffeeTerminal\CoffeeTerminal\Images\Icons\latte_coffee_drink_cup_glass_icon_210122.png" />
-                    <TextBlock FontFamily="Intro" VerticalAlignment="Center" FontSize="33" Padding="20,10,1,1">Холодный кофе</TextBlock>
+                    <TextBlock FontFamily="Plainot" VerticalAlignment="Center" FontSize="35" Padding="20,10,1,1">Холодный кофе</TextBlock>
                 </StackPanel>
             </ToggleButton>
             <ToggleButton Click="ButtonsBase_OnClick" Name="Button3" IsChecked="{Binding Button3IsChecked}" Grid.Column="3" Style="{StaticResource Button}">
                 <StackPanel Orientation="Horizontal">
                     <Image MaxHeight="90" Margin="1,1,1,1"
                            Source="C:\Users\Владыка\source\repos\SmartMdn\CoffeeTerminal\CoffeeTerminal\Images\Icons\4301501colacupdrinkfastfoodsofttakeawaywater-115941_115901.png" />
-                    <TextBlock FontFamily="Intro" VerticalAlignment="Center" FontSize="33" Margin="20,10,110,1">Газировки</TextBlock>
+                    <TextBlock FontFamily="Plainot" VerticalAlignment="Center" FontSize="35" Margin="20,10,110,1">Газировки</TextBlock>
                 </StackPanel>
             </ToggleButton>
             <StackPanel Grid.Column="0" Orientation="Vertical" Margin="0,50,0,0">
@@ -86,8 +86,8 @@
                         <Setter Property="Border.BorderThickness" Value="0"/>
                     </Style>
                 </StackPanel.Style>
-                <TextBlock FontFamily="Hello Jones Free Trial" HorizontalAlignment="Center" FontSize="50" Text="Take And Go"/>
-                <TextBlock FontFamily="Hello Jones Free Trial" HorizontalAlignment="Center" FontSize="30" Text="Coffee"/>
+                <TextBlock FontFamily="Intro" HorizontalAlignment="Center" FontSize="50" Text="Take And Go"/>
+                <TextBlock FontFamily="Intro" HorizontalAlignment="Center" FontSize="25" Text="Coffee"/>
             </StackPanel>
             
         </Grid>

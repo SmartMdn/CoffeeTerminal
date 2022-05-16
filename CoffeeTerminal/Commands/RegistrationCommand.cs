@@ -20,8 +20,19 @@ internal class RegistrationCommand : AsyncCommandBase
         _viewModel = viewModel;
     }
 
-    public override async Task ExecuteAsync(object parameter)
+    public override async Task ExecuteAsync(object? parameter)
     {
+        if (_viewModel.Id == null)
+        {
+            MessageBox.Show("Поле пустое");
+            return;
+        }
+        if (_viewModel.Id.Length != 9)
+        {
+            MessageBox.Show("Ввёдыннй Id неверной длины. Введите 9-тизначный Id");
+            return;
+        }
+
         if (!await _registrationService.Registration(_viewModel.Id))
         {
             MessageBox.Show("Введён неверный Id. Уточните верный у поставщика");

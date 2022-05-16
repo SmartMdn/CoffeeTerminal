@@ -1,8 +1,12 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
+using System.Threading.Tasks;
 using CoffeeTerminal.Domain.Models;
+using CoffeeTerminal.EntityFramework;
+using CoffeeTerminal.EntityFramework.Services;
 using Microsoft.EntityFrameworkCore;
 
-namespace CoffeeTerminal.EntityFramework.Services;
+namespace CoffeeTerminal.Services;
 
 public class RegistrationService : GenericDataService<Terminal>
 {
